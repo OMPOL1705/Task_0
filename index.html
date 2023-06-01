@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IOC - International Operations Center</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    nav ul {
+      list-style: none;
+    }
+    
+    nav ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    main {
+      padding: 40px;
+    }
+    
+    section {
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    footer div {
+      margin-right: 20px;
+    }
+    
+    footer h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    footer p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Data Centers</a></li>
+        <li><a href="#">Virtual Servers</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h1>Welcome to the International Operations Center (IOC)</h1>
+      <p>Empowering your Global Operations</p>
+    </section>
+
+    <section>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <h3>Contact Us</h3>
+      <p>Email: info@ioc.com</p>
+      <p>Phone: +1 (123) 456-7890</p>
+    </div>
+    
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+   
+var map = L.map('map').setView([0, 0], 2); 
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+  maxZoom: 18,
+}).addTo(map);
+
+
+var locations = [
+  { name: 'Rio De Janeiro, Brasil', latlng: [-22.9068, -43.1729], dataCenter: 'https://example.com/rio-login' },
+  { name: 'Accra, Ghana', latlng: [5.6037, -0.1870], dataCenter: 'https://example.com/accra-login' },
+  { name: 'Paris, France', latlng: [48.8566, 2.3522], dataCenter: 'https://example.com/paris-login' },
+  { name: 'Mumbai, India', latlng: [19.0760, 72.8777], dataCenter: 'https://example.com/mumbai-login' },
+  { name: 'Miami, Florida', latlng: [25.7617, -80.1918], dataCenter: 'https://example.com/miami-login' }
+];
+
+locations.forEach(function(location) {
+  var marker = L.marker(location.latlng).addTo(map);
+  
+  marker.bindPopup(location.name + '<br><a href="' + location.dataCenter + '">Login</a>');
+});
+
+  </script>
+</body>
+</html>
